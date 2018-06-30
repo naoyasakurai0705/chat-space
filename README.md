@@ -53,8 +53,8 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true, index: true|
-|group_id|integer|null: false, foreign_key: true, index: true|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
@@ -65,14 +65,18 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
-|body|text|null: false|
+|user|references|null: false, foreign_key: true|
+|group|references|null: false, foreign_key: true|
+|body|text|
 |image|string|
 
 ### Association
 - belongs_to :user
 - belongs_to :group
+
+<!-- referencesを使うメリット
+:userと記載しても、userではなくuser_idというカラム名を作成してくれる
+インデックスを自動で張ってくれる -->
 
 
 
