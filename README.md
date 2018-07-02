@@ -44,9 +44,9 @@ Things you may want to cover:
 |name|string|null: false|
 
 ### Association
+- has_many :messages
 - has_many :users, through: :members
 - has_many :members
-- has_many :messages
 
 
 ## membersテーブル
@@ -57,8 +57,8 @@ Things you may want to cover:
 |group|references|null: false, foreign_key: true|
 
 ### Association
-- belongs_to :group
 - belongs_to :user
+- belongs_to :group
 
 
 ## messagesテーブル
@@ -77,10 +77,3 @@ Things you may want to cover:
 <!-- referencesを使うメリット
 :userと記載しても、userではなくuser_idというカラム名を作成してくれる
 インデックスを自動で張ってくれる -->
-
-
-
-
-
-
-
