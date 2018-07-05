@@ -1,0 +1,23 @@
+$chat-side-letter-color: #FFFFFF;
+
+
+@mixin fa() {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome; /*Font Awesomeのフォントファミリー*/
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a{
+  text-decoration:none;
+  color: inherit; /*親要素のカラーを継承*/
+}

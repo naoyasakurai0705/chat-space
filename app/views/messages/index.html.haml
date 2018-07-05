@@ -1,0 +1,54 @@
+.contents
+
+  .notification チャットグループが作成されました。
+
+  .chat-side
+    .chat-side__user
+      .chat-side__user-content
+        .chat-side__user-content-name sakurai
+        %a.chat-side__user-content--new-group(href='#')
+          %i.fa.fa-pencil-square-o
+        %a.chat-side__user-content--edit-user(href='#')
+          %i.fa.fa-cog
+    .chat-side__groups
+      .chat-side__groups-list
+        %a(href='#' title='group detail')
+          .chat-side__group
+            .chat-side__group-name おはようございます
+            .chat-side__group-message 今日も頑張ります
+        %a(href='#' title='group detail')
+          .chat-side__group
+            .chat-side__group-name おはようございます
+            .chat-side__group-message 今日も頑張ります
+        %a(href='#' title='group detail')
+          .chat-side__group
+            .chat-side__group-name おはようございます
+            .chat-side__group-message 今日も頑張ります
+
+  .chat-main
+    .chat-main__header
+      .chat-main__header--group
+        .chat-main__header--group-name おはようございます
+        %a.chat-main__header--group-edit-btn(href='#') edit
+      .chat-main__header-members
+        MEMBER:
+        %i sakurai
+    .chat-main__body
+      .chat-main__body--messages-list
+        .chat-main__body--message
+          .chat-main__body--message-name sakurai
+          .chat-main__body--message-time 2018/07/03 17:20:00
+          .chat-main__body--message-body 今日も頑張ります
+        .chat-main__body--message
+          .chat-main__body--message-name sakurai
+          .chat-main__body--message-time 2018/07/03 17:20:00
+          .chat-main__body--message-body 今日も頑張ります
+    .chat-main__footer
+      %form.chat-main__footer-form
+        .chat-main__footer-body
+          %input.message(placeholder="type a message" type="text")
+          %label.chat-file
+            %input.image
+            %i.fa.fa-image
+          .field_with_errors
+        %input.submit(type="submit" name="commit" value="Send" )
