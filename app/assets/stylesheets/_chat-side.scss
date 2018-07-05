@@ -1,0 +1,73 @@
+@import "variable.scss";
+
+
+.chat-side {
+  height: 100vh;
+  width: 300px;
+  float: left;
+
+  &__user{
+    background-color: #253141;
+    height: 15%;
+    width: 100%;
+    position: relative;
+    &-content{
+      height: 50px;
+      width: 100%;
+      line-height: 50px;
+      margin: auto 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      &-name{
+        color: $chat-side-letter-color;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 20px;
+        position: relative;
+        display: inline-block;
+      }
+      &--new-group{
+        color: $chat-side-letter-color;
+        margin-left: 90px;
+        position: relative;
+        display: inline-block;
+        .fa{
+          @include fa()
+        }
+      }
+      &--edit-user{
+        color: $chat-side-letter-color;
+        position: relative;
+        display: inline-block;
+        .fa{
+          @include fa()
+        }
+      }
+    }
+  }
+
+  &__groups{
+    height: 85%;
+    width: 100%;
+    background-color: #2f3e51;
+    &-list{
+      height: 100%;
+      width:  100%;
+      color: $chat-side-letter-color;
+      .chat-side__group{
+        padding: 20px;
+        .chat-side__group-name{
+          font-size:  15px;
+        }
+        .chat-side__group-message{
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+}
+
+
+
