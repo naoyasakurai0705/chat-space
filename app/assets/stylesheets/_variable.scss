@@ -1,4 +1,4 @@
-$chat-side-letter-color: #FFFFFF;
+
 
 
 @mixin fa() {
@@ -20,4 +20,27 @@ html, body {
 a{
   text-decoration:none;
   color: inherit; /*親要素のカラーを継承*/
+}
+
+$white: #fff;
+$side_blue_dark: #253141;
+$side_blue_light: #2f3e51;
+$light_blue: #38AEF0;
+$light_gray: #999;
+$black: #434a54;
+$alert_orange: #F35500;
+$chat-side-letter-color: #FFFFFF;
+
+.notification {
+  .notice {
+    background-color: $light_blue;
+    color: $white;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: $alert_orange;
+    color: $white;
+    text-align: center;
+  }
 }
