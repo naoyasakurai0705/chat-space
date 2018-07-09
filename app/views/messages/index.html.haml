@@ -11,11 +11,8 @@
         %i sakurai
 
     .chat-main__body
-      .chat-main__body--messages-list
-        .chat-main__body--message
-          .chat-main__body--message-name sakurai
-          .chat-main__body--message-time 2018/07/03 17:20:00
-          .chat-main__body--message-body 今日も頑張ります
+      / = render @messages
+      = render partial: 'message', collection: @messages
 
     .chat-main__footer
       / %form.chat-main__footer-form
