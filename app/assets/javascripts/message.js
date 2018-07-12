@@ -1,16 +1,18 @@
 $(function(){
   function buildHTML(message){
+    var img = message.image ? `<img class="message__image" src= ${message.image} >` : "";
+    var body = message.body ? message.body : "";
     var html = `<div class="chat-main__body--messages-list">
                   <div class="chat-main__body--message">
                     <div class="chat-main__body--message-name">
-                      ${ message.user.name }
+                      ${ message.user_name }
                     </div>
                     <div class="chat-main__body--message-time">
-                      ${ message.created_at.strftime("%Y/%m/%d %H:%M") }
+                      ${ message.created_at}
                     </div>
                     <div class="chat-main__body--message-body">
-                      ${ message.body if message.body.present? }
-                      ${ image_tag message.image.url,class: 'message__image'if message.image.present? }
+                      ${ body }
+                      ${ img }
                     </div>
                   </div>
                 </div>`
@@ -33,7 +35,7 @@ $(function(){
       var html = buildHTML(data);
       $('.chat-main__body').append(html)
       $('.message').val('')
-    })
+   })
     .fail(function(){
       alert('error');
     })
