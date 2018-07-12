@@ -34,10 +34,16 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.chat-main__body').append(html)
-      $('.message').val('')
+      $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
+      $('#new_message')[0].reset()
+      // $('.message').val('')
+      // $('.message__image').val('')
+      $(".submit").prop("disabled", false)
+
    })
     .fail(function(){
       alert('error');
+      $(".submit").prop("disabled", false)
     })
   })
 });
