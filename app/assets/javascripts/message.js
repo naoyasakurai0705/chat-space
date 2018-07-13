@@ -24,7 +24,6 @@ $(function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
-    // var url = $(this).attr('action')
     $.ajax({
       url: location.href,
       type: "POST",
@@ -38,8 +37,6 @@ $(function(){
       $('.chat-main__body').append(html)
       $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
       $('#new_message')[0].reset()
-      // $('.message').val('')
-      // $('.message__image').val('')
       $(".submit").prop("disabled", false)
    })
     .fail(function(){
