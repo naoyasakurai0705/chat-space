@@ -2,7 +2,9 @@ $(function(){
   function buildHTML(message){
     var img = message.image ? `<img class="message__image" src= ${message.image} >` : "";
     var body = message.body ? message.body : "";
-    var html = `<div class="chat-main__body--messages-list">
+    var html =
+             `<div ~~ data-message-id="${message.id}"></div>
+                <div class="chat-main__body--messages-list">
                   <div class="chat-main__body--message">
                     <div class="chat-main__body--message-name">
                       ${ message.user_name }
@@ -22,9 +24,9 @@ $(function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
-    var url = $(this).attr('action')
+    // var url = $(this).attr('action')
     $.ajax({
-      url: url,
+      url: location.href,
       type: "POST",
       data: formData,
       dataType: 'json',
@@ -39,7 +41,6 @@ $(function(){
       // $('.message').val('')
       // $('.message__image').val('')
       $(".submit").prop("disabled", false)
-
    })
     .fail(function(){
       alert('error');
