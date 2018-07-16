@@ -32,7 +32,6 @@ function appendMember(id, name){
     })
    .done(function(users) {
      $("#user-search-result").empty();
-    if members.id = users.id
     if (users.length !== 0) {
        users.forEach(function(user){
          appendUser(user);
