@@ -6,10 +6,11 @@
       .chat-main__header--group
         .chat-main__header--group-name
           = @group.name
-        %a.chat-main__header--group-edit-btn(href='#') edit
+        %a.chat-main__header--group-edit-btn(href='/groups/#{@group.id}/edit') edit
       .chat-main__header-members
         MEMBER:
-        = @group.group_users.name
+        - @group.users.each do |user|
+          = user.name
 
     .chat-main__body
       / = render @messages
