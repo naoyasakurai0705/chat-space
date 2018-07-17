@@ -1,4 +1,5 @@
 $(function() {
+// 検索したユーザーのHTML
 function appendUser(user){
   var html =
     `<div class="chat-group-user clearfix">
@@ -7,19 +8,30 @@ function appendUser(user){
     </div>`
   $("#user-search-result").append(html);
   }
+// 検索したユーザーがいない場合のHTML
 function appendNoUser(user){
   var html =
     `<div class='chat-group-user clearfix'>${user}</div>`
     $("#user-search-result").append(html);
   }
-function appendMember(id, name){
+// 検索したユーザーのを追加した場合のHTML
+function addChatUser(id, name){
   var html =
     `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${id}'>
       <input name='group[user_ids][]' type='hidden' value='${id}'>
       <p class='chat-group-user__name'>${name}</p>
-      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+      <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn' data-user-id="${id}" data-user-name="${name}">削除</a>
     </div>`
   $("#chat-group-users").append(html);
+  }
+// 削除したユーザーを検索に表示
+  function backChatUser(id, name){
+  var html =
+    `<div class="chat-group-user clearfix">
+      <p class="chat-group-user__name">${name}</p>
+      <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${id}" data-user-name="${name}">追加</a>
+    </div>`
+  $("#user-search-result").append(html);
   }
 
   $("#user-search-field").on("keyup", function() {
@@ -30,27 +42,27 @@ function appendMember(id, name){
       data: { keyword: input },
       dataType: 'json'
     })
-   .done(function(users) {
-     $("#user-search-result").empty();
+    .done(function(users) {
+    $("#user-search-result").empty();
     if (users.length !== 0) {
        users.forEach(function(user){
          appendUser(user);
-       });
-     }
+      });
+    }
     else {
       appendNoUser("一致するユーザーがいません");
-     }
-   })
+      }
+    })
     .fail(function() {
       alert('ユーザーの検索に失敗しました');
     });
     return false;
-  });
+    });
 
   $("#user-search-result").on("click",".user-search-add",function(){
     var id = $(this).data("user-id");
     var name = $(this).data("user-name");
-    appendMember(id, name);
+    addChatUser(id, name);
     $(this).parent().remove();
   });
 
