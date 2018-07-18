@@ -24,6 +24,8 @@ $(function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
+
+    setInterval(function() {
     $.ajax({
       url: location.href,
       type: "POST",
@@ -31,17 +33,20 @@ $(function(){
       dataType: 'json',
       processData: false,
       contentType: false
-  })
+    })
     .done(function(data){
       var html = buildHTML(data);
       $('.chat-main__body').append(html)
       $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
       $('#new_message')[0].reset()
       $(".submit").prop("disabled", false)
-   })
+    })
     .fail(function(){
       alert('error');
       $(".submit").prop("disabled", false)
-    })
-  })
+    });
+     } else {
+    clearInterval(interval);
+   } , 5000 );
+  });
 });
