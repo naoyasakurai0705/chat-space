@@ -27,7 +27,10 @@
           .chat-group-user.clearfix.js-chat-member{id: "chat-group-user-#{user.id}"}
             = hidden_field_tag "group[user_ids][]","#{user.id}"
             %p.chat-group-user__name #{user.name}
-            .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+            - if current_user.id == user.id
+              .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn
+            - else
+              .user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
     .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right
