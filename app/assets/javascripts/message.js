@@ -3,7 +3,7 @@ $(function(){
     var img = message.image ? `<img class="message__image" src= ${message.image} >` : "";
     var body = message.body ? message.body : "";
     var html =
-             `<div ~~ data-message-id="${message.id}"></div>
+             `<div class ="message" data-message-id="${message.id}"></div>
                 <div class="chat-main__body--messages-list">
                   <div class="chat-main__body--message">
                     <div class="chat-main__body--message-name">
@@ -24,8 +24,6 @@ $(function(){
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
-
-    setInterval(function() {
     $.ajax({
       url: location.href,
       type: "POST",
@@ -40,13 +38,37 @@ $(function(){
       $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
       $('#new_message')[0].reset()
       $(".submit").prop("disabled", false)
-    })
+     })
     .fail(function(){
       alert('error');
       $(".submit").prop("disabled", false)
-    });
-     } else {
-    clearInterval(interval);
-   } , 5000 );
+    })
   });
+
+
+  var interval = setInterval(function() {
+      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+    $.ajax({
+      url: location.href.json,
+    })
+    .done(function(json) {
+      var id = $('.chat').data('messageId');
+// ２回目以降の自動更新のためにデータの中身を空にする。
+      var insertHTML = '';
+      json.messages.forEach(function(message) {
+        if (message.id > id ) {
+          insertHTML += buildHTML(message);
+        }
+      });
+      $('.chat-wrapper').prepend(insertHTML);
+    })
+    .fail(function(json) {
+      alert('自動更新に失敗しました');
+    });
+  } else {
+    clearInterval(interval);
+   }} , 5000 );
+
+
+
 });
