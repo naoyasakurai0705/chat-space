@@ -16,7 +16,7 @@
     .chat-group-form__field--right
       .chat-group-form__search.clearfix
         = form_tag('/users', method: :get) do
-          %input#user-search-field.chat-group-form__input{name: "keyword", placeholder: "追加したいユーザー名を入力してください", type: "text", value: ""}
+          = f.text_field :name, class: 'chat-group-form__input',placeholder: '追加したいユーザー名を入力してください',name: "keyword",id: 'user-search-field'
       #user-search-result
     .chat-group-form__field.clearfix
     .chat-group-form__field--left
@@ -25,9 +25,11 @@
       #chat-group-users
         - group.users.each do |user|
           .chat-group-user.clearfix.js-chat-member{id: "chat-group-user-#{user.id}"}
+            / = f.hidden_field "group[user_ids][]", value: "#{user.id}"
+            / = hidden_field_tag "group[user_ids][]",value: "#{user.id}"
             %input{name: "group[user_ids][]", type: "hidden", value: "#{user.id}"}
             %p.chat-group-user__name #{user.name}
-            %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
+            = link_to "削除","",class: 'user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'
     .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right

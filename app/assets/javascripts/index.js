@@ -54,14 +54,16 @@ $(function() {
     return false;
   });
 
-  $("#user-search-result").on("click",".user-search-add",function(){
-    var id = $(this).data();
+  $("#user-search-result").on("click",".user-search-add",function(e){
+    e.preventDefault();
+    var id = $(this).data("user-id");
     var name = $(this).data("user-name");
     addChatUser(id, name);
     $(this).parent().remove();
   });
 
-  $("#chat-group-users").on("click",".user-search-remove",function(){
+  $("#chat-group-users").on("click",".user-search-remove",function(e){
+    e.preventDefault();
     $(this).parent().remove();
   });
 });
