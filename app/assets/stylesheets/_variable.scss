@@ -1,6 +1,4 @@
 
-
-
 @mixin fa() {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome; /*Font Awesomeのフォントファミリー*/
@@ -9,7 +7,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   }
-
 
 html, body {
   height: 100%;

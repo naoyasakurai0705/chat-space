@@ -54,7 +54,7 @@ $(function() {
     return false;
   });
 
-  $("#user-search-result").on("click",".user-search-add",function(e){
+  $("#user-search-result").on("click",".chat-group-user__btn--add",function(e){
     e.preventDefault();
     var id = $(this).data("user-id");
     var name = $(this).data("user-name");
@@ -62,7 +62,7 @@ $(function() {
     $(this).parent().remove();
   });
 
-  $("#chat-group-users").on("click",".user-search-remove",function(e){
+  $("#chat-group-users").on("click",".js-remove-btn",function(e){
     e.preventDefault();
     $(this).parent().remove();
   });
