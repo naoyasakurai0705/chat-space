@@ -31,6 +31,9 @@ $(function() {
 // 検索時のキーアップに対してのファンクションを追加
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
+    if (input == "") {
+     $("#user-search-result").empty();
+    }else{
       $.ajax({
       type: 'GET',
       url: '/users',
@@ -51,8 +54,9 @@ $(function() {
       .fail(function() {
         alert('ユーザーの検索に失敗しました');
       });
-    return false;
-  });
+    }
+      return false;
+    });
 
   $("#user-search-result").on("click",".chat-group-user__btn--add",function(e){
     e.preventDefault();
