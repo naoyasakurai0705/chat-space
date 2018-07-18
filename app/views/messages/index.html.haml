@@ -6,27 +6,21 @@
       .chat-main__header--group
         .chat-main__header--group-name
           = @group.name
-        %a.chat-main__header--group-edit-btn(href='#') edit
+        = link_to "edit","edit",class: 'chat-main__header--group-edit-btn'
       .chat-main__header-members
         MEMBER:
-        = @group.group_users.name
+        - @group.users.each do |user|
+          = user.name
 
     .chat-main__body
-      / = render @messages
       = render partial: 'message', collection: @messages
 
     .chat-main__footer
-      / %form.chat-main__footer-form
       = form_for [@group, @message] , html: {class:'chat-main__footer-form'} do |f|
         .chat-main__footer-body
-          / %input.message(placeholder="type a message" type="text")
           = f.text_field :body, class: 'message', placeholder: 'type a message'
-          / %label.chat-file
           = f.label :image, class: 'chat-file' do
-            / %input.image
             = f.file_field :image, class: 'image'
-            / %i.fa.fa-image
             = fa_icon 'picture-o', class: 'fa fa-image'
           .field_with_errors
-        / %input.submit(type="submit" name="commit" value="Send" )
         = f.submit 'Send', class: 'submit'
