@@ -3,8 +3,7 @@ $(function(){
     var img = message.image ? `<img class="message__image" src= ${message.image} >` : "";
     var body = message.body ? message.body : "";
     var html =
-             `<div class ="message" data-message-id="${message.id}"></div>
-                <div class="chat-main__body--messages-list">
+                `<div class="chat-main__body--messages-list" data-message-id="${message.id}">
                   <div class="chat-main__body--message">
                     <div class="chat-main__body--message-name">
                       ${ message.user_name }
@@ -49,26 +48,27 @@ $(function(){
   var interval = setInterval(function() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)) {
     $.ajax({
-      url: location.href.json,
+      url: location.href,
+      type: "GET",
+      dataType: 'json',
+      processData: false,
+      contentType: false
     })
     .done(function(json) {
-      var id = $('.chat').data('messageId');
-// ２回目以降の自動更新のためにデータの中身を空にする。
-      var insertHTML = '';
+      var id = $('.chat-main__body--messages-list').last().data("message-id");
+      var insertHTML ='';
+      console.log(id)
       json.messages.forEach(function(message) {
         if (message.id > id ) {
           insertHTML += buildHTML(message);
         }
       });
-      $('.chat-wrapper').prepend(insertHTML);
+      $('.chat-main__body').append(insertHTML);
     })
     .fail(function(json) {
       alert('自動更新に失敗しました');
     });
   } else {
     clearInterval(interval);
-   }} , 5000 );
-
-
-
+   }} , 3000 );
 });
