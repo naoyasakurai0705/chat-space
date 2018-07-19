@@ -49,22 +49,20 @@ $(function(){
   });
 
   var interval = setInterval(function() {
-      if (window.location.pathname.match(/\/groups\/\d+\/messages/)) {
-      var id = $('.chat-main__body--messages-list').last().data("message-id");
+      if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+      var lastId = $('.chat-main__body--messages-list').last().data("message-id");
     $.ajax({
       url: location.pathname,
       type: "GET",
+      data:{ id: lastId },
       dataType: 'json',
-      processData: false,
       contentType: false
     })
     .done(function(json) {
       var insertHTML ='';
       json.messages.forEach(function(message) {
-        if (message.id > id ) {
           insertHTML = buildHTML(message)
           scrollDown()
-        }
       });
       $('.chat-main__body').append(insertHTML);
     })
