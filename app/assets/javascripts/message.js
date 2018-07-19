@@ -20,6 +20,10 @@ $(function(){
     return html;
   }
 
+  function scrollDown(){
+    $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
+  }
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -34,7 +38,7 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data);
       $('.chat-main__body').append(html)
-      $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
+      scrollDown()
       $('#new_message')[0].reset()
       $(".submit").prop("disabled", false)
      })
@@ -45,22 +49,21 @@ $(function(){
   });
 
   var interval = setInterval(function() {
-      if (window.location.href.match(/\/groups\/\d+\/messages/)) {
+      if (window.location.pathname.match(/\/groups\/\d+\/messages/)) {
+      var id = $('.chat-main__body--messages-list').last().data("message-id");
     $.ajax({
-      url: location.href,
+      url: location.pathname,
       type: "GET",
       dataType: 'json',
       processData: false,
       contentType: false
     })
     .done(function(json) {
-      var id = $('.chat-main__body--messages-list').last().data("message-id");
       var insertHTML ='';
-      console.log(id)
       json.messages.forEach(function(message) {
         if (message.id > id ) {
-          insertHTML = buildHTML(message);
-      $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
+          insertHTML = buildHTML(message)
+          scrollDown()
         }
       });
       $('.chat-main__body').append(insertHTML);
