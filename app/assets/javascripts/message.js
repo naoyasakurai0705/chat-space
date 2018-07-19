@@ -44,7 +44,6 @@ $(function(){
     })
   });
 
-
   var interval = setInterval(function() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)) {
     $.ajax({
@@ -60,7 +59,8 @@ $(function(){
       console.log(id)
       json.messages.forEach(function(message) {
         if (message.id > id ) {
-          insertHTML += buildHTML(message);
+          insertHTML = buildHTML(message);
+      $('.chat-main__body').animate({scrollTop: $('.chat-main__body')[0].scrollHeight}, 'fast')
         }
       });
       $('.chat-main__body').append(insertHTML);
@@ -70,5 +70,5 @@ $(function(){
     });
   } else {
     clearInterval(interval);
-   }} , 3000 );
+   }} , 5000 );
 });
