@@ -61,11 +61,11 @@ $(function(){
         .done(function(json) {
           var insertHTML ='';
           json.messages.forEach(function(message) {
-              insertHTML = buildHTML(message)
-              scrollDown()
-        });
+            insertHTML = buildHTML(message)
+            scrollDown()
+          });
           $('.chat-main__body').append(insertHTML);
-          })
+        })
         .fail(function(json) {
           alert('自動更新に失敗しました');
         });
