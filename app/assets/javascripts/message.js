@@ -41,7 +41,7 @@ $(function(){
       scrollDown()
       $('#new_message')[0].reset()
       $(".submit").prop("disabled", false)
-     })
+    })
     .fail(function(){
       alert('error');
       $(".submit").prop("disabled", false)
@@ -49,27 +49,28 @@ $(function(){
   });
 
   var interval = setInterval(function() {
-      if (location.pathname.match(/\/groups\/\d+\/messages/)) {
+    if (location.pathname.match(/\/groups\/\d+\/messages/)) {
       var lastId = $('.chat-main__body--messages-list').last().data("message-id");
-    $.ajax({
-      url: location.pathname,
-      type: "GET",
-      data:{ id: lastId },
-      dataType: 'json',
-      contentType: false
-    })
-    .done(function(json) {
-      var insertHTML ='';
-      json.messages.forEach(function(message) {
-          insertHTML = buildHTML(message)
-          scrollDown()
-      });
-      $('.chat-main__body').append(insertHTML);
-    })
-    .fail(function(json) {
-      alert('自動更新に失敗しました');
-    });
-  } else {
-    clearInterval(interval);
-   }} , 5000 );
+        $.ajax({
+          url: location.pathname,
+          type: "GET",
+          data:{ id: lastId },
+          dataType: 'json',
+          contentType: false
+        })
+        .done(function(json) {
+          var insertHTML ='';
+          json.messages.forEach(function(message) {
+              insertHTML = buildHTML(message)
+              scrollDown()
+        });
+          $('.chat-main__body').append(insertHTML);
+          })
+        .fail(function(json) {
+          alert('自動更新に失敗しました');
+        });
+    } else {
+      clearInterval(interval);
+    }
+  } , 5000 );
 });
