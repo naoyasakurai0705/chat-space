@@ -68,6 +68,5 @@ end
 
 group :production do
   gem 'unicorn'
+  gem 'devise'
 end
-
-
