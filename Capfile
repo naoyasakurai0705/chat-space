@@ -1,8 +1,8 @@
 # Load DSL and set up stages
 require "capistrano/setup"
+require "capistrano/deploy"
 
 # Include default deployment tasks
-require "capistrano/deploy"
 
 # Load the SCM plugin appropriate to your project:
 #
@@ -18,7 +18,12 @@ install_plugin Capistrano::SCM::Git
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:
-#
+require 'capistrano/rbenv'
+require 'capistrano/bundler'
+require 'capistrano/rails/assets'
+require 'capistrano/rails/migrations'
+require 'capistrano3/unicorn'
+
 #   https://github.com/capistrano/rvm
 #   https://github.com/capistrano/rbenv
 #   https://github.com/capistrano/chruby
